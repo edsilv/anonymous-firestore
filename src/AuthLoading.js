@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import {
-  firestoreConnect,
+  firebaseConnect,
   isLoaded,
   isEmpty,
 } from 'react-redux-firebase';
@@ -23,8 +23,8 @@ AuthLoading.propTypes = {
 };
 
 export default compose(
-  connect(({ firestore }) => ({
-    auth: firestore.auth,
+  connect(({ firebase }) => ({
+    auth: firebase.auth,
   })),
-  firestoreConnect(),
+  firebaseConnect(),
 )(AuthLoading);
