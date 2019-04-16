@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -7,19 +6,20 @@ import {
   isLoaded,
   isEmpty,
 } from 'react-redux-firebase';
-import TodoList from './TodoList';
 
-const AuthLoading = ({ auth }) => {
+const AuthLoading = ({ auth, children }) => {
   if (isEmpty(auth) || !isLoaded(auth)) {
     return null;
   }
-  return (
-    <TodoList />
-  );
+  return children;
 }
 
 AuthLoading.propTypes = {
   auth: PropTypes.object,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
 };
 
 export default compose(
